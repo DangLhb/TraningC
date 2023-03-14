@@ -11,81 +11,52 @@ Cài đặt các chức năng sau:
 5. In ra tất cả các sản phẩm trong danh sách với 1 trong 2 lựa chọn giá tăng dần hoặc giảm dần)
 
 ******************************************/
-#include<stdio.h>
+#include"function.h"
 
 
-typedef struct
-{
-	int product_code;
-	char product_name[50];
-	int product_price;
-	int product_remaining_amount;	
-}product_t;
-
-int g_number_of_product = 0;
-
-void add_product(product_t product_ptr_t[])
-{	
-    printf("Enter add\n");
-	// Nhap ma san pham
-	printf("Nhap ma san pham :\n");
-	// scanf("%d", &(*(product_ptr + g_number_of_product).product_code));
-	scanf("%d", &product_ptr_t[g_number_of_product].product_code);
-	printf("Nhap ten san pham :\n");
-	// scanf("%s", &(*(product_ptr + g_number_of_product).product_name));
-	scanf("%s", product_ptr_t[g_number_of_product].product_name);
-	printf("Nhap gia san pham :\n");
-	// scanf("%d", &(*(product_ptr + g_number_of_product).product_price));
-	scanf("%d", &product_ptr_t[g_number_of_product].product_price);	
-	printf("Nhap so luong ton kho :\n");
-	// scanf("%d", &(*(product_ptr + g_number_of_product).product_remaining_amount));
-	scanf("%d", &product_ptr_t[g_number_of_product].product_remaining_amount);
-	sort_by_price(product_ptr_t);
-	g_number_of_product += 1; 
-}
-
-void sort_by_price(struct product_ptr_t[])
-{
+// sap xep theo gia
+// void sort_by_price(struct product_ptr_t[])
+// {
 	
-}
+// }
 
-void delete_product(struct product_ptr_t[])
-{
-	int product_code_delete;
-	int is_same_code  = 0;
-	printf("Nhap ma dien thoai ma ban muon xoa \n");
-	scanf("%d",&product_code_delete);
-	for(int i = 0; i < g_number_of_product; i ++)
-	{
-		if(product_code_delete == product_ptr_t[i].product_code)
-		{
-			delete_product_danglhb(i, product_ptr_t);
-			is_same_code = 1; 
-			break;
-		}
-		else 
-		{
-			is_same_code = 0
-		}
-	}
-	if(!is_same_code)
-	{
-		printf("Ma ban nhap khong trung voi bat ki ma nao\n");
-	}
-}
+// void delete_product(struct product_ptr_t[])
+// {
+// 	int product_code_delete;
+// 	int is_same_code  = 0;
+// 	printf("Nhap ma dien thoai ma ban muon xoa \n");
+// 	scanf("%d",&product_code_delete);
+// 	for(int i = 0; i < g_number_of_product; i ++)
+// 	{
+// 		if(product_code_delete == product_ptr_t[i].product_code)
+// 		{
+// 			delete_product_danglhb(i, product_ptr_t);
+// 			is_same_code = 1; 
+// 			break;
+// 		}
+// 		else 
+// 		{
+// 			is_same_code = 0
+// 		}
+// 	}
+// 	if(!is_same_code)
+// 	{
+// 		printf("Ma ban nhap khong trung voi bat ki ma nao\n");
+// 	}
+// }
 
-void delete_product_danglhb(int stt, struct product_ptr_t[])
-{
-	for(int i = stt; i < g_number_of_product; i ++)
-	{
-		product_ptr_t[i].product_code = product_ptr_t[i + 1].product_code;
-		product_ptr_t[i].product_name = product_ptr_t[i + 1].product_name;	// chua ro khi gan string cho string thi co duoc khong?
-		product_ptr_t[i].product_price = product_ptr_t[i + 1].product_price;
-		product_ptr_t[i].product_remaining_amount = product_ptr_t[i + 1].product_code;
-		g_number_of_product -= 1;
+// void delete_product_danglhb(int stt, struct product_ptr_t[])
+// {
+// 	for(int i = stt; i < g_number_of_product; i ++)
+// 	{
+// 		product_ptr_t[i].product_code = product_ptr_t[i + 1].product_code;
+// 		product_ptr_t[i].product_name = product_ptr_t[i + 1].product_name;	// chua ro khi gan string cho string thi co duoc khong?
+// 		product_ptr_t[i].product_price = product_ptr_t[i + 1].product_price;
+// 		product_ptr_t[i].product_remaining_amount = product_ptr_t[i + 1].product_code;
+// 		g_number_of_product -= 1;
 
-	}
-}
+// 	}
+// }
 
 //enum action
 int main()
