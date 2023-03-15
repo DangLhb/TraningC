@@ -34,6 +34,7 @@ int main()
 			break;
 			case 2:
 				//call function delete
+				delete_product(product_ptr);
 			break;
 			case 3:
 				//call change

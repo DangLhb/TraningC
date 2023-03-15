@@ -65,7 +65,6 @@ void sort_by_price(product_t product_ptr_t[])
 	{
 		last_price = product_ptr_t[i].product_price;
 		last_code = product_ptr_t[i].product_code;
-		// last_name = product_ptr_t[i].product_name;
 		strcpy(last_name, product_ptr_t[i].product_name);
 		last_amount = product_ptr_t[i].product_remaining_amount;
 		j = i;
@@ -73,54 +72,63 @@ void sort_by_price(product_t product_ptr_t[])
 		{
 			product_ptr_t[j].product_price = product_ptr_t[j - 1].product_price;
 			product_ptr_t[j].product_code = product_ptr_t[j - 1].product_code;
-			// product_ptr_t[j].product_name = product_ptr_t[j - 1].product_name;
 			strcpy(product_ptr_t[j].product_name, product_ptr_t[j - 1].product_name);			
 			product_ptr_t[j].product_remaining_amount = product_ptr_t[j - 1].product_remaining_amount;			
 			j -= 1;
 		}
 		product_ptr_t[j].product_price = last_price;
 		product_ptr_t[j].product_code = last_code;
-		// product_ptr_t[j].product_name = product_ptr_t[j - 1].product_name;
 		strcpy(product_ptr_t[j].product_name, last_name);			
 		product_ptr_t[j].product_remaining_amount = last_amount;	
 	}
 
 }
 
-// void delete_product(struct product_ptr_t[])
-// {
-// 	int product_code_delete;
-// 	int is_same_code  = 0;
-// 	printf("Nhap ma dien thoai ma ban muon xoa \n");
-// 	scanf("%d",&product_code_delete);
-// 	for(int i = 0; i < g_number_of_product; i ++)
-// 	{
-// 		if(product_code_delete == product_ptr_t[i].product_code)
-// 		{
-// 			delete_product_danglhb(i, product_ptr_t);
-// 			is_same_code = 1; 
-// 			break;
-// 		}
-// 		else 
-// 		{
-// 			is_same_code = 0
-// 		}
-// 	}
-// 	if(!is_same_code)
-// 	{
-// 		printf("Ma ban nhap khong trung voi bat ki ma nao\n");
-// 	}
-// }
+void delete_product(product_t product_ptr_t[])
+{
+	int product_code_delete;
+	int is_same_code  = 0;
+	printf("Nhap ma dien thoai ma ban muon xoa \n");
+	scanf("%d",&product_code_delete);
+	for(int i = 0; i < g_number_of_product; i ++)
+	{
+		if(product_code_delete == product_ptr_t[i].product_code)
+		{
+			delete_product_danglhb(i, product_ptr_t);
+			is_same_code = 1; 
+			break;
+		}
+		else 
+		{
+			is_same_code = 0;
+		}
+	}
+	if(!is_same_code)
+	{
+		printf("Ma ban nhap khong trung voi bat ki ma nao\n");
+	}
 
-// void delete_product_danglhb(int stt, struct product_ptr_t[])
-// {
-// 	for(int i = stt; i < g_number_of_product; i ++)
-// 	{
-// 		product_ptr_t[i].product_code = product_ptr_t[i + 1].product_code;
-// 		product_ptr_t[i].product_name = product_ptr_t[i + 1].product_name;	// chua ro khi gan string cho string thi co duoc khong?
-// 		product_ptr_t[i].product_price = product_ptr_t[i + 1].product_price;
-// 		product_ptr_t[i].product_remaining_amount = product_ptr_t[i + 1].product_code;
-// 		g_number_of_product -= 1;
+	for(int i = 0; i < g_number_of_product; i ++)
+	{
+		printf("co tong cong %d loai san pham \n",g_number_of_product);
+		printf("San pham thu %d \n", i);
+		printf("code = %d\n", product_ptr_t[i].product_code);
+		printf("name = %s\n", product_ptr_t[i].product_name);
+		printf("price = %d\n", product_ptr_t[i].product_price);
+		printf("amount = %d\n", product_ptr_t[i].product_remaining_amount);
+	}
 
-// 	}
-// }
+}
+
+void delete_product_danglhb(int stt, product_t product_ptr_t[])
+{
+	for(int i = stt; i < g_number_of_product; i ++)
+	{
+		product_ptr_t[i].product_code = product_ptr_t[i + 1].product_code;
+		// product_ptr_t[i].product_name = product_ptr_t[i + 1].product_name;	// chua ro khi gan string cho string thi co duoc khong?
+		strcpy(product_ptr_t[i].product_name, product_ptr_t[i + 1].product_name);
+		product_ptr_t[i].product_price = product_ptr_t[i + 1].product_price;
+		product_ptr_t[i].product_remaining_amount = product_ptr_t[i + 1].product_code;
+		g_number_of_product -= 1;
+	}
+}
