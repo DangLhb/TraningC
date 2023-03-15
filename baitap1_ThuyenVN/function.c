@@ -132,3 +132,38 @@ void delete_product_danglhb(int stt, product_t product_ptr_t[])
 		g_number_of_product -= 1;
 	}
 }
+
+void change_amount_follow_code_product (product_t product_ptr_t[])
+{
+	int product_code_change;
+	int is_same_code = 0;
+	printf("Nhap ma san pham ma ban muon thay doi so luong ton kho\n");
+	scanf("%d",&product_code_change);
+	for(int i = 0; i < g_number_of_product; i ++)
+	{
+		if(product_code_change == product_ptr_t[i].product_code)
+		{
+			printf("Nhap so luong ton kho moi\n");
+			scanf("%d", &product_ptr_t[i].product_remaining_amount);
+			is_same_code = 1;
+			break;
+		}
+		else
+		{
+			is_same_code = 0;
+		}
+	}
+	if(!is_same_code)
+	{
+		printf("Ma ban nhap khong trung voi bat ki ma nao\n");
+	}
+		for(int i = 0; i < g_number_of_product; i ++)
+	{
+		printf("co tong cong %d loai san pham \n",g_number_of_product);
+		printf("San pham thu %d \n", i);
+		printf("code = %d\n", product_ptr_t[i].product_code);
+		printf("name = %s\n", product_ptr_t[i].product_name);
+		printf("price = %d\n", product_ptr_t[i].product_price);
+		printf("amount = %d\n", product_ptr_t[i].product_remaining_amount);
+	}
+}

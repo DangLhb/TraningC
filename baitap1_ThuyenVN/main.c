@@ -38,6 +38,7 @@ int main()
 			break;
 			case 3:
 				//call change
+				change_amount_follow_code_product(product_ptr);
 			break;
 			case 4:
 				//call Fine
