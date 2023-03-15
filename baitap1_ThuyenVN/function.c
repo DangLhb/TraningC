@@ -167,3 +167,76 @@ void change_amount_follow_code_product (product_t product_ptr_t[])
 		printf("amount = %d\n", product_ptr_t[i].product_remaining_amount);
 	}
 }
+
+void fine_product_with_nearest_price(product_t product_ptr_t[])
+{
+	int price_require;
+	int difference_num;
+	int j = 0;
+	printf("Nhap gia tien san pham ma ban muon tim \n");
+	scanf("%d", &price_require);
+
+	if(price_require > product_ptr_t[g_number_of_product - 1].product_price)
+	{
+		print_search_result(g_number_of_product - 1, product_ptr_t);
+		return;
+	}
+	if(price_require < product_ptr_t[0].product_price)
+	{
+		print_search_result(0, product_ptr_t);
+		return;
+	}
+		while(product_ptr_t[j].product_price < price_require && j < g_number_of_product)
+		{
+			j += 1;
+		}
+		// break while khi  xảy ra 2 trường hop : 1 là price = ai 2 là price < a(i+ 1)
+		if(price_require == product_ptr_t[j].product_price)
+		{
+			print_search_result(j, product_ptr_t);
+		}
+		else
+		{
+			if( (price_require - product_ptr_t[j - 1].product_price) > (product_ptr_t[j].product_price - price_require) )
+			{
+				print_search_result(j, product_ptr_t);
+			}
+			else if((price_require - product_ptr_t[j - 1].product_price) < (product_ptr_t[j].product_price - price_require))
+			{
+				print_search_result(j - 1, product_ptr_t); 
+			}
+			else 
+			print_search_result(j, product_ptr_t);
+		}
+
+}
+
+void print_search_result(int stt, product_t product_ptr_t[])
+{
+	printf("stt = %d\n", stt);
+	printf("San pham co gia gan nhat la san pham co ma = %d, ten = %s, gia = %d, so luong = %d \n",
+	product_ptr_t[stt].product_code, product_ptr_t[stt].product_name,
+	product_ptr_t[stt].product_price, product_ptr_t[stt].product_remaining_amount);
+	if(g_number_of_product == 1)
+	{
+		printf(" Khong co san pham co gia can tren va can duoi\n");
+		return;
+	}
+	if(stt == g_number_of_product - 1)
+	{
+		printf("Khong co gia can tren\n");
+	}  
+	else if(stt == 0)
+	{
+		printf("Khong co gia can duoi\n");
+	}
+	if(stt != g_number_of_product - 1)
+	printf("San pham co gia can tren la san pham co ma = %d, ten = %s, gia = %d, so luong = %d \n",
+	product_ptr_t[stt + 1].product_code, product_ptr_t[stt + 1].product_name,
+	product_ptr_t[stt + 1].product_price, product_ptr_t[stt + 1].product_remaining_amount);
+	if(stt !=0)
+	printf("San pham co gia can duoi la san pham co ma = %d, ten = %s, gia = %d, so luong = %d \n",
+	product_ptr_t[stt - 1].product_code, product_ptr_t[stt - 1].product_name,
+	product_ptr_t[stt - 1].product_price, product_ptr_t[stt - 1].product_remaining_amount);		
+
+}

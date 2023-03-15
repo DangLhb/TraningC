@@ -3,7 +3,7 @@
 
 #include<stdio.h>
 #include<string.h>
-
+extern int g_number_of_product;
 typedef struct
 {
 	int product_code;
@@ -17,6 +17,8 @@ void sort_by_price(product_t product_ptr_t[]);
 void delete_product(product_t product_ptr_t[]);
 void delete_product_danglhb(int stt, product_t product_ptr_t[]);
 void change_amount_follow_code_product (product_t product_ptr_t[]);
+void fine_product_with_nearest_price(product_t product_ptr_t[]);
+void print_search_result(int stt, product_t product_ptr_t[]);
 
 
 #endif
