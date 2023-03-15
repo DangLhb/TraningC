@@ -240,3 +240,37 @@ void print_search_result(int stt, product_t product_ptr_t[])
 	product_ptr_t[stt - 1].product_price, product_ptr_t[stt - 1].product_remaining_amount);		
 
 }
+
+void print_list_product (product_t product_ptr_t[])
+{
+	int choice;
+	do
+	{
+		printf(" Lua chon muon in theo gia  tang dan hoac giam dan : \n 1 . Tang dan\n2 . Giam dan\n");
+		scanf("%d",&choice);
+	}
+	while(choice != 1 && choice != 2);
+	if(choice == 1)
+	{
+		for(int i = 0; i < g_number_of_product; i ++)
+		{
+			printf("San pham thu %d \n", i + 1);
+			printf("code = %d\n", product_ptr_t[i].product_code);
+			printf("name = %s\n", product_ptr_t[i].product_name);
+			printf("price = %d\n", product_ptr_t[i].product_price);
+			printf("amount = %d\n", product_ptr_t[i].product_remaining_amount);
+		}
+	}
+	if(choice == 2)
+	{
+		for(int i = g_number_of_product; i > 0; i -- )
+		{
+			printf("San pham thu %d \n", g_number_of_product - i + 1);
+			printf("code = %d\n", product_ptr_t[i -1].product_code);
+			printf("name = %s\n", product_ptr_t[i - 1].product_name);
+			printf("price = %d\n", product_ptr_t[i - 1].product_price);
+			printf("amount = %d\n", product_ptr_t[i - 1].product_remaining_amount);
+		}
+	}
+
+}

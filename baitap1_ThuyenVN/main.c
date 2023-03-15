@@ -45,7 +45,7 @@ int main()
 				fine_product_with_nearest_price(product_ptr);
 			break;
 			case 5:
-				//call printf
+				print_list_product(product_ptr);
 			break;
 
 			default:
