@@ -14,50 +14,6 @@ Cài đặt các chức năng sau:
 #include"function.h"
 
 
-// sap xep theo gia
-// void sort_by_price(struct product_ptr_t[])
-// {
-	
-// }
-
-// void delete_product(struct product_ptr_t[])
-// {
-// 	int product_code_delete;
-// 	int is_same_code  = 0;
-// 	printf("Nhap ma dien thoai ma ban muon xoa \n");
-// 	scanf("%d",&product_code_delete);
-// 	for(int i = 0; i < g_number_of_product; i ++)
-// 	{
-// 		if(product_code_delete == product_ptr_t[i].product_code)
-// 		{
-// 			delete_product_danglhb(i, product_ptr_t);
-// 			is_same_code = 1; 
-// 			break;
-// 		}
-// 		else 
-// 		{
-// 			is_same_code = 0
-// 		}
-// 	}
-// 	if(!is_same_code)
-// 	{
-// 		printf("Ma ban nhap khong trung voi bat ki ma nao\n");
-// 	}
-// }
-
-// void delete_product_danglhb(int stt, struct product_ptr_t[])
-// {
-// 	for(int i = stt; i < g_number_of_product; i ++)
-// 	{
-// 		product_ptr_t[i].product_code = product_ptr_t[i + 1].product_code;
-// 		product_ptr_t[i].product_name = product_ptr_t[i + 1].product_name;	// chua ro khi gan string cho string thi co duoc khong?
-// 		product_ptr_t[i].product_price = product_ptr_t[i + 1].product_price;
-// 		product_ptr_t[i].product_remaining_amount = product_ptr_t[i + 1].product_code;
-// 		g_number_of_product -= 1;
-
-// 	}
-// }
-
 //enum action
 int main()
 {

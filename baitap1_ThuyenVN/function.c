@@ -42,18 +42,47 @@ void add_product(product_t product_ptr_t[])
 	scanf("%d", &product_ptr_t[g_number_of_product].product_remaining_amount);
 	g_number_of_product += 1; 
 	sort_by_price(product_ptr_t);
+
+	for(int i = 0; i < g_number_of_product; i ++)
+	{
+		printf("co tong cong %d loai san pham \n",g_number_of_product);
+		printf("San pham thu %d \n", i);
+		printf("code = %d\n", product_ptr_t[i].product_code);
+		printf("name = %s\n", product_ptr_t[i].product_name);
+		printf("price = %d\n", product_ptr_t[i].product_price);
+		printf("amount = %d\n", product_ptr_t[i].product_remaining_amount);
+	}
 }
 
 
 // sap xep theo thu tu tang dan theo gia ban
 void sort_by_price(product_t product_ptr_t[])
 {
-	if(g_number_of_product < 2)
-		return;
-	// su dung insertsort
-	for(int i = 0; i < g_number_of_product; i ++)
+	int i , j;
+	int last_code, last_price, last_amount;
+	char last_name[50];
+	for(i = 1; i < g_number_of_product; i ++)
 	{
-		
+		last_price = product_ptr_t[i].product_price;
+		last_code = product_ptr_t[i].product_code;
+		// last_name = product_ptr_t[i].product_name;
+		strcpy(last_name, product_ptr_t[i].product_name);
+		last_amount = product_ptr_t[i].product_remaining_amount;
+		j = i;
+		while(j > 0, product_ptr_t[j - 1].product_price > last_price)
+		{
+			product_ptr_t[j].product_price = product_ptr_t[j - 1].product_price;
+			product_ptr_t[j].product_code = product_ptr_t[j - 1].product_code;
+			// product_ptr_t[j].product_name = product_ptr_t[j - 1].product_name;
+			strcpy(product_ptr_t[j].product_name, product_ptr_t[j - 1].product_name);			
+			product_ptr_t[j].product_remaining_amount = product_ptr_t[j - 1].product_remaining_amount;			
+			j -= 1;
+		}
+		product_ptr_t[j].product_price = last_price;
+		product_ptr_t[j].product_code = last_code;
+		// product_ptr_t[j].product_name = product_ptr_t[j - 1].product_name;
+		strcpy(product_ptr_t[j].product_name, last_name);			
+		product_ptr_t[j].product_remaining_amount = last_amount;	
 	}
 
 }
