@@ -16,5 +16,15 @@ int main()
 	sort_node_ascending_insert_sort(head);
 	print_list(head);
 
+
+	int arr[10] = {0,1,1,1,1,1,1,1,1,1};
+	int result_max = *(arr + 9);
+	int max = max_arr_danglhb(arr, 10, result_max);
+	printf("max =  %d\n", max);
+	// int sum = sum_arr_danglhb(arr, 10, 0);
+	int sum = sum_arr_danglhb_2(arr, 10);
+	printf("sum = %d\n", sum);
+
+
 	return 0;
 }
