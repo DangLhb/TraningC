@@ -9,7 +9,7 @@ node creat_node(int value)
 	danglhb->next = NULL;
 	return danglhb;	
 }
-// De them mot node vao dau thi kiem tra list co 
+
 node add_node_at_the_begin(node head, int value)
 {
 	node temp = creat_node(value);
@@ -26,8 +26,7 @@ node add_node_at_the_begin(node head, int value)
 	printf("DangLHb -debub create a node at begin with value = %d\n",value);
 	return head;
 }
-// them node vao cuoi trong list : Kierm tra list co trong khong? Neu khong thi thuc hien tim phan tu cuoi, next cua cuoi tro toi
-// node moi
+
 node add_node_at_the_end(node head, int value)
 {
 	node temp = creat_node(value);
@@ -46,12 +45,9 @@ node add_node_at_the_end(node head, int value)
 	}
 	return head;
 }
-// them node vao vi tri mong muon nao do trong list : Kiem tra co phai la list trong k hoac truong hop nay tuong duong voi position = 0.= > chen vao dau hang.
-// Neu khong thi thuc hien vòng lặp chạy từ node 0 đến node chỉ định.
 
 node add_node_at_hope_postion(node head, int position, int value)
 {
-	printf("DangLHb debug - position = %d\n", position);
 	if(position == 0 || head == NULL)
 	{
 		add_node_at_the_begin(head, value);
@@ -71,17 +67,13 @@ node add_node_at_hope_postion(node head, int position, int value)
 		}
 		else 
 		{
-			printf("DanglHb Debug - create a node with value = %d\n", value);
 			node temp = creat_node(value);
 			temp->next = p->next;
 			p->next = temp;
-			printf("DanglHb DEBUG - in ra gia tri vua nhap = %d\n", p->nums);
 		}
 	}
 	return head;
 }
-// Xoa node khoi danh sach lien ket :
-// Xoa dau : kiem tra list co empty k ? neu k thi thuc hien
 
 node del_node_at_begin_of_list(node head)
 {
@@ -93,7 +85,7 @@ node del_node_at_begin_of_list(node head)
 	}
 	return head;
 }
-// Xoa cuoi : kiem tra list co empty k ? neu khong thi thuc hien duyet toi phan tu gan cuoi cung, neu p->next->next = Null thi p->next = NuLL
+
 node del_node_at_end_of_list(node head)
 {	
 	if(head == NULL)
@@ -112,8 +104,6 @@ node del_node_at_end_of_list(node head)
 	}
 	return head;
 }
-
-// xoa vi tri bat ki
 
 node del_node_at_hope_position(node head, int position)
 {
@@ -142,8 +132,6 @@ node del_node_at_hope_position(node head, int position)
 	return head;
 }
 
-// lay gia tri bat ki trong list
-
 int get_value_of_node(node head, int position)
 {
 	int k = 0;
@@ -159,8 +147,6 @@ int get_value_of_node(node head, int position)
 	}
 	return p->nums;
 }
-
-// set gia tri moi cho node theo vi tri
 
 void set_value_of_node(node head, int position, int value)
 {
@@ -181,8 +167,6 @@ void set_value_of_node(node head, int position, int value)
 	}
 }
 
-//Tìm kiem gia tri trong list
-// return position
 int find_value_in_list(node head, int value)
 {
 	int position = 0;
@@ -195,8 +179,7 @@ int find_value_in_list(node head, int value)
 	}
 	return -1;
 }
-// sap xep list theo thu tu tang dan dua theo insert sort
-// insert sort : Thuc hien sap xep 1 phan tu vao mot mang da duoc sap xep tu truoc
+
 void sort_node_ascending_insert_sort(node head)
 {
 	int i = 1;
@@ -215,7 +198,6 @@ void sort_node_ascending_insert_sort(node head)
 		i ++;
 		set_value_of_node(head,j,last);
 	}
-
 }
 
 void print_list(node head)
@@ -223,20 +205,12 @@ void print_list(node head)
 	node p = head;
 	int i = 0;
 	printf("DangLHb DEBUG -- enter print_list\n");
-	// for(p = head; p->next != NULL; p = p->next)
-	// p = head;
-	// for(int i = 0;i < sum ;i ++)
+
 	while(p!= NULL)
 	{
 		printf("Gia tri cua node thu %d trong link list la %d\n",i, p->nums);
 		i++;
 		p = p->next;
-		// if(p->next != NULL)
-		// {
-			// p = p->next;
-		// }
-		// else
-			// break;
 	}
 }
 node init_head()

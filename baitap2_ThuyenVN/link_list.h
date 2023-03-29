@@ -6,8 +6,7 @@
 struct LinkedList
 {
 	int nums;
-	struct LinkedList* next; // Tại sao next lại là kiểu LinkedList của chính nó? Bởi vì nó là
-	// con trỏ trỏ của chính bản thân nó, và nó trỏ tới một thằng Node kế tiếp cũng có kiểu LinkedList
+	struct LinkedList* next;
 };
 typedef struct LinkedList *node;
 
