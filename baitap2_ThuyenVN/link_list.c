@@ -91,22 +91,24 @@ node del_node_at_begin_of_list(node head)
 	{
 		head = head->next;
 	}
+	return head;
 }
 // Xoa cuoi : kiem tra list co empty k ? neu khong thi thuc hien duyet toi phan tu gan cuoi cung, neu p->next->next = Null thi p->next = NuLL
 node del_node_at_end_of_list(node head)
-{
-	if(head = NULL)
+{	
+	if(head == NULL)
 	{
 		printf("Nothing to del\n");
 	}
 	else 
 	{
 		node p = head;
-		while(p->next->next !=NULL)
+		while(p->next->next !=NULL)	
 		{
 			p = p->next;
 		}
 		p->next = NULL;	//hoac co the viet p->next = p->next->nexts
+		// p->next = p->next->next;
 	}
 	return head;
 }
@@ -204,7 +206,7 @@ void sort_node_ascending_insert_sort(node head)
 	for(p = head; p->next != NULL; p = p->next)
 	{
 		j = i;
-		last = p->nums;
+		last = p->next->nums;
 		while(j > 0 && get_value_of_node(head, j - 1) > last)
 		{
 			set_value_of_node(head,j, get_value_of_node(head, j -1));
@@ -216,21 +218,25 @@ void sort_node_ascending_insert_sort(node head)
 
 }
 
-void print_list(node head, int sum)
+void print_list(node head)
 {
-	node p;
+	node p = head;
+	int i = 0;
 	printf("DangLHb DEBUG -- enter print_list\n");
 	// for(p = head; p->next != NULL; p = p->next)
-	p = head;
-	for(int i = 0;i < sum ;i ++)
+	// p = head;
+	// for(int i = 0;i < sum ;i ++)
+	while(p!= NULL)
 	{
 		printf("Gia tri cua node thu %d trong link list la %d\n",i, p->nums);
-		if(p->next != NULL)
-		{
-			p = p->next;
-		}
-		else
-			break;
+		i++;
+		p = p->next;
+		// if(p->next != NULL)
+		// {
+			// p = p->next;
+		// }
+		// else
+			// break;
 	}
 }
 node init_head()

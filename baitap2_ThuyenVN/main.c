@@ -11,8 +11,10 @@
 
 int main()
 {
-			printf("Create a link list\n");
+	printf("Create a link list\n");
 	node head = creat_link_list();
-	print_list(head, 5);
+	sort_node_ascending_insert_sort(head);
+	print_list(head);
+
 	return 0;
 }
