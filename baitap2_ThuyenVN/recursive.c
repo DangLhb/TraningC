@@ -1,5 +1,6 @@
 // recursive.c -- DangLHb
 //----------------Function Array-----------------
+#include"link_list.h"
 #include"recursive.h"
 
 int max_2(int a, int b)
@@ -77,15 +78,17 @@ int sum_arr_danglhb_2(int arr[], int n)
 		return *(arr+ n - 1) + sum_arr_danglhb_2(arr, n - 1);
 }
 
-// int main()
-// {
-// 	int arr[10] = {0,1,1,1,1,1,1,1,1,1};
-// 	int result_max = *(arr + 9);
-// 	int max = max_arr_danglhb(arr, 10, result_max);
-// 	printf("max =  %d\n", max);
-// 	// int sum = sum_arr_danglhb(arr, 10, 0);
-// 	int sum = sum_arr_danglhb_2(arr, 10);
-// 	printf("sum = %d\n", sum);
-// 	return 0;
-// }
 //--------------------Function link-list-----------------------------
+//find max by recursive
+int max_link_list(node head, int n)
+{
+	node p = head;
+	if(n == 0)
+		return - 1;
+	if(n == 1)
+		return p->nums;
+	printf("----%d\n",get_value_of_node(head,n - 1));
+	if(get_value_of_node(head, n - 1) > max_link_list(head, n - 1))
+		return get_value_of_node(head, n - 1);
+	else return max_link_list(head, n - 1);
+}
