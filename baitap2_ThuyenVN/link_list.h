@@ -3,12 +3,15 @@
 #define _LINK_LIST_H_
 #include<stdio.h>
 #include<stdlib.h>
+// #include"recursive.h"
+
 struct LinkedList
 {
 	int nums;
 	struct LinkedList* next;
 };
 typedef struct LinkedList *node;
+
 
 node creat_node(int value);
 node add_node_at_the_begin(node head, int value);
@@ -24,5 +27,7 @@ void sort_node_ascending_insert_sort(node head);
 void print_list(node head);
 node init_head();
 node creat_link_list();
+int count_mount_of_node(node head);
+
 
 #endif

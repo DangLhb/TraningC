@@ -1,4 +1,5 @@
 // Trien khai va tao link list , truy suat cac phan tu trong link list
+// #include"recursive.h"
 #include"link_list.h"
 
 node creat_node(int value)
@@ -199,7 +200,24 @@ void sort_node_ascending_insert_sort(node head)
 		set_value_of_node(head,j,last);
 	}
 }
+int count_mount_of_node(node head)
+{
+	node p = head;
+	int count = 0;
+	if(head == NULL)
+		return 0;
+	// while(p->next != NULL)
+	// {
+	// 	count ++;
+	// 	p = p->next;
+	// }
+	do {
+		count ++;
+		p = p->next;
+	} while(p != NULL);
 
+	return count;
+}
 void print_list(node head)
 {
 	node p = head;
@@ -213,12 +231,12 @@ void print_list(node head)
 		p = p->next;
 	}
 }
-node init_head()
+node init_head(void)
 {
 	node head = NULL;
 	return head;
 }
-node creat_link_list()
+node creat_link_list(void)
 {
 	int value, sum;
 	node head = init_head();	 
