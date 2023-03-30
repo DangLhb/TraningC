@@ -25,8 +25,8 @@ void set_value_of_node(node head, int position, int value);
 int find_value_in_list(node head, int value);
 void sort_node_ascending_insert_sort(node head);
 void print_list(node head);
-node init_head();
-node creat_link_list();
+node init_head(void);
+node creat_link_list(void);
 int count_mount_of_node(node head);
 
 
