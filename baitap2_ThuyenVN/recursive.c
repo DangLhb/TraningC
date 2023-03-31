@@ -92,6 +92,7 @@ int max_link_list(node head, int n)
 		return get_value_of_node(head, n - 1);
 	else return max_link_list(head, n - 1);
 }
+
 // dau vao n la tong so node trong list , result_max gia tri cua node cuoi cung
 int max_link_list_danglhb(node head, int n, int result_max)
 {
@@ -102,4 +103,17 @@ int max_link_list_danglhb(node head, int n, int result_max)
 		return result_max;
 	result_max = max_2(result_max,get_value_of_node(head, n - 2));
 	return max_link_list_danglhb(head, n - 1, result_max);
+}
+
+//ham tinh tong
+int sum_link_list(node head, int n)
+{
+	node p = head;
+
+	if(n == 0)
+		return - 1;
+	if(n == 1)
+		return p->nums;
+	
+	return get_value_of_node(head,n - 1) + sum_link_list(head, n - 1);
 }

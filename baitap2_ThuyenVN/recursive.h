@@ -14,5 +14,7 @@ int sum_arr_danglhb_2(int arr[], int n);
 
 int max_link_list(node head, int n);
 int max_link_list_danglhb(node head, int n, int result_max);
+int sum_link_list(node head, int n);
+
 
 #endif
