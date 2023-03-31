@@ -186,6 +186,8 @@ void sort_node_ascending_insert_sort(node head)
 	int i = 1;
 	int j;
 	int last;
+	if(head == NULL)
+		return;
 	node p;
 	for(p = head; p->next != NULL; p = p->next)
 	{
