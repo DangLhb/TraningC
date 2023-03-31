@@ -8,23 +8,33 @@
 3. Vẫn tìm max / tổng bằng đệ quy nhưng cho cấu trúc dữ liệu là linked list
 */
 #include "link_list.h"
+#include"recursive.h"
+
 
 int main()
 {
+	int num_of_arr;
+	int arr[100];
+	int result;
 	printf("Create a link list\n");
 	node head = creat_link_list();
 	sort_node_ascending_insert_sort(head);
 	print_list(head);
 
+	printf("Nhap so phan tu cua mang\n");
+	scanf("%d", &num_of_arr);
+	for(int i = 0; i < num_of_arr; i ++)
+	{
+		printf("Nhap gia tri cho phan tu thu %d\n", i);
+		scanf("%d", &(*(arr + i)));
+	}
+	printf("Max in array = %d\n", max_arr_danglhb_2(arr, num_of_arr));
+	printf("Sum of arr= %d\n", sum_arr_danglhb_2(arr, num_of_arr));
 
-	int arr[10] = {0,1,1,1,1,1,1,1,1,1};
-	int result_max = *(arr + 9);
-	int max = max_arr_danglhb(arr, 10, result_max);
-	printf("max =  %d\n", max);
-	// int sum = sum_arr_danglhb(arr, 10, 0);
-	int sum = sum_arr_danglhb_2(arr, 10);
-	printf("sum = %d\n", sum);
+	printf("Max in link list = %d\n", max_link_list(head, count_mount_of_node(head)));
+	printf("sum of link list= %d\n", sum_link_list(head, count_mount_of_node(head)));
 
 
+	
 	return 0;
 }

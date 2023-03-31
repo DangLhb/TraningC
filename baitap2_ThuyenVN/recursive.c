@@ -24,7 +24,7 @@ int max_arr_danglhb(int arr[], int sum, int result_max)
 }
 
 // Ham max tren mang
-int max_arr_internet(int arr[], int sum)
+int max_arr_danglhb_2(int arr[], int sum)
 {
 	if(sum == 0)
 		return -1;
@@ -32,10 +32,10 @@ int max_arr_internet(int arr[], int sum)
 		return *arr;
 	else
 	{
-		if(arr[sum - 1] > max_arr_internet(arr, sum - 1))
+		if(arr[sum - 1] > max_arr_danglhb_2(arr, sum - 1))
 			return arr[sum - 1];
 		else 
-			return max_arr_internet(arr, sum - 1);
+			return max_arr_danglhb_2(arr, sum - 1);
 	}
 }
 

@@ -8,7 +8,7 @@
 
 int max_2(int a, int b);
 int max_arr_danglhb(int arr[], int sum, int result_max);
-int max_arr_internet(int arr[], int sum);
+int max_arr_danglhb_2(int arr[], int sum);
 int sum_arr_danglhb(int arr[], int n, int result_sum);
 int sum_arr_danglhb_2(int arr[], int n);
 
