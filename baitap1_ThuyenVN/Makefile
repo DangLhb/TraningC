@@ -4,7 +4,7 @@ HDRS+=	function.h
 CSRCS+=main.c
 CSRCS+=	function.c
 
-OBJSDIR=./build
+# OBJSDIR=./build
 OBJ=main.o	function.o
 DEPS=function.h
 
