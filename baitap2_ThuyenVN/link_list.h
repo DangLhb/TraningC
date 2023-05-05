@@ -5,13 +5,27 @@
 #include<stdlib.h>
 // #include"recursive.h"
 
-struct LinkedList
+struct Node_sigle
 {
 	int nums;
-	struct LinkedList* next;
+	struct Node_sigle* next;
 };
-typedef struct LinkedList *node;
+typedef struct Node_sigle *node;
 
+struct Node_double
+{
+	int data;
+	struct Node_double* next_d;
+	struct Node_double* prev_d;
+}
+typedef struct Node_double *node_double;
+
+struct Linklist_double
+{
+	node head;
+	node tail;
+}
+typedef struct LinkedList_double *ll_double;
 
 node creat_node(int value);
 node add_node_at_the_begin(node head, int value);
