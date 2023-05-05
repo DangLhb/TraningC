@@ -17,10 +17,15 @@ int main()
 	int arr[100];
 	int result;
 	printf("Create a link list\n");
-	node head = creat_link_list();
-	sort_node_ascending_insert_sort(head);
-	print_list(head);
+	
+	//single
+	// node head = creat_link_list();
+	// sort_node_ascending_insert_sort(head);
+	// print_list(head);
 
+	//double
+	ll_double list_double = creat_link_list_double();
+	sor
 	printf("Nhap so phan tu cua mang\n");
 	scanf("%d", &num_of_arr);
 	for(int i = 0; i < num_of_arr; i ++)
@@ -34,7 +39,5 @@ int main()
 	printf("Max in link list = %d\n", max_link_list(head, count_mount_of_node(head)));
 	printf("sum of link list= %d\n", sum_link_list(head, count_mount_of_node(head)));
 
-
-	
 	return 0;
 }

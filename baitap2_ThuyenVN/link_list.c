@@ -305,7 +305,7 @@ int get_value_of_node(node head, int position)
 }
 
 //double
-int get_value_of_node(ll_double list_double, int position)
+int get_value_of_node_double(ll_double list_double, int position)
 {
 	int k = 0;
 	node_double p = list_double->head;
@@ -415,9 +415,29 @@ void sort_node_ascending_insert_sort(node head)
 //double
 void sort_node_ascending_insert_sort_double(ll_double list_double)
 {
-	
-}
+	int i = 1;
+	int j;
+	int last;
+	if(list_double->head == NULL)
+		return;
+	node_double p;
+	for(p = list_double->head; p->next_d !=NULL; p = p->next_d)
+	{
+		j = i;
+		last = p->next_d->data;
+		while(j > 0 && get_value_of_node_double(list_double, j - 1) > last)
+		{
+			set_value_of_node_double(list_double, j, get_value_of_node_double(list_double, j - 1));
+			j -= 1;
+		}
+		i ++;
+		set_value_of_node(list_double, j, last);	
+	}
+}	
 
+/**********tim so luong node trong list******/
+
+//single
 int count_mount_of_node(node head)
 {
 	node p = head;
@@ -436,6 +456,25 @@ int count_mount_of_node(node head)
 
 	return count;
 }
+
+//double
+int count_mount_of_node_double(ll_double list_double)
+{
+	node_double p = list_double->head;
+	int count = 0;
+	if(head == NULL)
+		return 0;
+	do {
+		count ++;
+		p = p->next_d;
+	} while(p != NULL)
+
+	return count;
+}
+
+/*******in ra gia tri cua cac node trong list ****************/
+
+//single
 void print_list(node head)
 {
 	node p = head;
@@ -449,11 +488,42 @@ void print_list(node head)
 		p = p->next;
 	}
 }
+
+//double
+void print_list_double(ll_double list_double)
+{
+	node_double p = list_double->head;
+	int i = 0;
+
+	while(p != NULL)
+	{
+		printf("Gia tri cua node thu %d trong link list la %d\n",i, p->data);
+		i ++;
+		p = p->next_d;
+	}
+}
+
+/*************ham khoi tao gia tri cho node dau hoac cuoi***********/
+
+//single
 node init_head(void)
 {
 	node head = NULL;
 	return head;
 }
+
+//double
+ll_double init_head_tail_double(void)
+{
+	ll_double list_double;
+	list_double->head = NULL;
+	list_double->tail = NULL;
+	return list_double;
+}
+
+/*******khoi tao danh sach*************/
+
+//single
 node creat_link_list(void)
 {
 	int value, sum;
@@ -467,4 +537,20 @@ node creat_link_list(void)
 		head = add_node_at_the_end(head, value);
 	}
 	return head;
+}
+
+//double
+ll_double creat_link_list_double(void)
+{
+	int value, sum;
+	ll_double list_double = init_head_tail_double();
+	printf("Nhap so phan tu cua link list\n");
+	scanf("%d",&sum);
+	for(int i = 0; i < sum; i ++)
+	{
+		printf("Nhap gia tri cho node thu %d\n",i);
+		scanf("%d", &value);
+		list_double = add_node_at_the_end_double(list_double, value);
+	}
+	return list_double;
 }
