@@ -17,15 +17,15 @@ struct Node_double
 	int data;
 	struct Node_double* next_d;
 	struct Node_double* prev_d;
-}
+};
 typedef struct Node_double *node_double;	// struct nay dung de mo ta mot node cua link list double gom nhung gi?
 
-struct Linklist_double
+typedef struct //Linklist_double
 {
-	node head;
-	node tail;
-}
-typedef struct LinkedList_double *ll_double;	// struct nay de phan loai cac link list double kha nhau : - co the hieu la de xac dinh link list
+	node_double head;
+	node_double tail;
+}ll_double;
+// typedef struct LinkedList_double ll_double;	// struct nay de phan loai cac link list double kha nhau : - co the hieu la de xac dinh link list
 //single
 node creat_node(int value);
 node add_node_at_the_begin(node head, int value);
