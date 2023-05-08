@@ -16,7 +16,7 @@ int max_arr_danglhb(int arr[], int sum, int result_max)
 	if(sum == 0)
 		return -1;
 	if(sum == 1)
-		return result_max;
+		return *arr;
 
 	result_max = max_2(result_max, *(arr + sum - 2));
 
@@ -80,6 +80,7 @@ int sum_arr_danglhb_2(int arr[], int n)
 
 //--------------------Function link-list-----------------------------
 //find max by recursive
+//single
 int max_link_list(node head, int n)
 {
 	node p = head;
@@ -100,7 +101,7 @@ int max_link_list_danglhb(node head, int n, int result_max)
 	if(n == 0)
 		return -1;
 	if(n == 1)
-		return result_max;
+		return p->nums;
 	result_max = max_2(result_max,get_value_of_node(head, n - 2));
 	return max_link_list_danglhb(head, n - 1, result_max);
 }
@@ -116,4 +117,49 @@ int sum_link_list(node head, int n)
 		return p->nums;
 	
 	return get_value_of_node(head,n - 1) + sum_link_list(head, n - 1);
+}
+
+//double
+//ham tim max trong double link list
+int max_link_list_double(ll_double list_double, int n)
+{
+	node_double p = list_double.head;
+	if(n == 0)
+		return - 1;
+	if(n == 1)
+		return p->data;
+	if(get_value_of_node_double(list_double, n - 1) > max_link_list_double(list_double, n - 1))
+		return get_value_of_node_double(list_double, n - 1);
+	else
+		return max_link_list_double(list_double, n - 1);
+}
+//n la tong so node trong list
+//result_max la gia tri cua node cuoi cung trong list.
+int max_link_list_double_danglhb(ll_double list_double, int n, int result_max)
+{
+	node_double p = list_double.head;
+	if (n == 0)
+	{
+		return -1;
+	}
+	if (n == 1)
+	{
+		return p->data;
+	}
+	result_max = max_2(result_max, get_value_of_node_double(list_double, n - 2));
+	return max_link_list_double_danglhb(list_double, n - 1, result_max);
+}
+
+// ham tinh tong gia tri cac node trong double
+// n la tong so node trong list
+int sum_link_list_double(ll_double list_double, int n)
+{
+	node_double p = list_double.head;
+	if(n == 0)
+		return -1;
+	if (n == 1)
+	{
+		return p->data;
+	}
+	return get_value_of_node_double(list_double, n - 1) + sum_link_list_double(list_double, n - 1);
 }
