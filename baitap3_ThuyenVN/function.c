@@ -8,7 +8,7 @@ inf creat_company(void)
 	company->ID = 0;
 	company->income = 0;
 	printf("Nhap ten cong ty\n");
-	scanf("%s", &company->name);
+	scanf("%s", company->name);
 	company->superior = NULL;
 	for(int i = 0; i < 10; i ++)
 	{
@@ -21,19 +21,22 @@ inf creat_company(void)
 inf creat_new_node(inf company)
 {
 	inf p = company;
+	inf new_staff;
 	for(int i = 0; i < 10; i ++)
 	{
 		if(p->staff[i] == NULL)
 		{
-			p = p->staff[i];
-			printf("Nhap ID cua node :\n");
+			new_staff = (inf)malloc(sizeof(struct infor));
+			p->staff[i] = new_staff;	
 			do {
-				scanf("%d",&p->ID);
-			} while(is_ID_exist(company,p->ID));
-			printf("Mhap ten : \n");
-			scanf("%s", &p->name);
-			printf("Nhap thua nhap:\n");
-			scanf("%d", &p->income);
+				printf("Nhap ID cua node :\n");
+				scanf("%d",&new_staff->ID);
+			} while(is_ID_exist(company,new_staff->ID));
+			printf("Nhap ten : \n");
+			scanf("%s", new_staff->name);
+			printf("Nhap thu nhap:\n");
+			scanf("%d", &new_staff->income);
+			new_staff->superior = p;
 			return company;
 		}
 	}
@@ -46,52 +49,61 @@ inf creat_new_node(inf company)
 //return 0 neu ID chua trung.
 int is_ID_exist(inf company, int i_d)
 {
-	inf p = company;
+	//inf p = company;
 	printf("DangLHb DEBUG enter is_ID_exist\n");
 
-	return recusiver_check_ID(p, i_d);
+	return recusiver_check_ID(company, i_d);
 }
 
 // ham de quy so sánh ID :
-int recusiver_check_ID(inf p, int i_d)
+int recusiver_check_ID(inf company, int i_d)
 {
-	if(p->ID == i_d)
+	printf("DangLHb DEBUG - enter recusiver_check_ID\n");
+	if(company->ID == i_d)
 	{
-		printf("ID exist, nhap lai ID :\n");
+		//printf("ID exist, nhap lai ID :\n");
 		return 1;
 	}
 	for(int i = 0; i < 10; i ++)
 	{
-		if(p->staff[i] == NULL)
-			break;
+		if(company->staff[i] == NULL)
+		{
+			printf("DangLHb enter recusiver_check_ID - for i = %d\n", i);
+		}
 		else
 		{
-			recusiver_check_ID(p->staff[i], i_d);
+			recusiver_check_ID(company->staff[i], i_d);
 		}
 	}
+	printf("ID nhao vao khong trung voi bat ki ID nao\n");
 	return 0;
 }
 //Handle Event ADD
 void add_staff (inf company)
 {
+	//inf p = company;
 	int ID_superior;
 	printf("Nhap ID cua cap tren: \n");
 	do{
-		printf("DangLHb debug enter do\n");
-		scanf("%d",ID_superior);
-	} while(!is_ID_exist(company,ID_superior));
+		//printf("DangLHb debug enter do\n");
+		scanf("%d",&ID_superior);
+	} while(is_ID_exist(company,ID_superior) == 0);
 	company = add_staff_base_on_ID(company, ID_superior);
+	//return p;
 }
 
 //ham tim vi tri node co ID tuong ung
 inf find_node_base_on_id (inf p, int i_d)
 {
+	//printf("DanglHb debug - enter find_node_base_on_id\n");
 	if(p->ID == i_d)
 		return p;
 	for(int i = 0; i < 10; i ++)
 	{
 		if(p->staff[i] == NULL)
-			break;
+		{
+			
+		}
 		else
 		{
 			find_node_base_on_id(p->staff[i], i_d);
@@ -103,10 +115,11 @@ inf find_node_base_on_id (inf p, int i_d)
 //ADD staff to company - base on ID of superior.
 inf add_staff_base_on_ID (inf company, int i_d)
 {
+	printf("DangLHb DEBUG- enter add_staff_base_on_ID \n");
 	inf p = company;
 	//kiem tra xem voi ID dau vao thi phai cho con tro P tro toi vi tri node do.
 	p = find_node_base_on_id(p,i_d);
 
-	p = creat_new_node(p);
+	p = creat_new_node(company);
 	return company;
 }

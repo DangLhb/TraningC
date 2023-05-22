@@ -19,6 +19,7 @@ Mỗi nhân viên có một hệ thống chân rết gồm tối đa 10 nhân vi
 
     while(1)
     {
+        action = 0;
         do{
         printf("Hanh dong muon thuc hien\n1 . Them nhan vien vao cong ty \n2. Tinh thua nhap cua nhan vien theo ID.\n3.In thong tin cua toan bo nhan vien\n");
         scanf("%d", &action);

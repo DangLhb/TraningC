@@ -16,6 +16,7 @@ typedef struct infor *inf;
 
 typedef enum
 {
+	none = 0,
 	add = 1,
 	income = 2,
 	print = 3
