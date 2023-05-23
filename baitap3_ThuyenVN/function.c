@@ -1,5 +1,5 @@
 #include "function.h"
-
+// ham khoi tao cong ty voi cac gia tri mac dinh
 inf creat_company(void)
 {
 	inf company;
@@ -17,7 +17,7 @@ inf creat_company(void)
 	return company;
 }
 
-
+// ham tao mot node gom cac thong tin cua nhan vien
 inf creat_new_node(inf p, inf company,int id)
 {
 	inf new_staff;
@@ -118,7 +118,7 @@ inf find_node_base_on_id (inf p, int i_d)
 	{
 		if(p->staff[i] == NULL)
 		{
-			printf("Node con thu %d cua nodes co ID = %d\n trong",i,i_d);
+			//printf("Node con thu %d cua nodes co ID = %d trong\n",i,i_d);
 		}
 		else
 		{
@@ -126,13 +126,13 @@ inf find_node_base_on_id (inf p, int i_d)
 			return find_node_base_on_id(p->staff[i], i_d);
 		}
 	}
-	//return p;
+	return p;
 }
 
-//ADD staff to company - base on ID of superior.
+//ham them nhan vien dua tren ID
 inf add_staff_base_on_ID (inf company, int i_d)
 {
-	printf("DangLHb DEBUG- enter add_staff_base_on_ID \n");
+	//printf("DangLHb DEBUG- enter add_staff_base_on_ID \n");
 	inf p = company;
 	//kiem tra xem voi ID dau vao thi phai cho con tro P tro toi vi tri node do.
 	p = find_node_base_on_id(p,i_d);
@@ -141,10 +141,7 @@ inf add_staff_base_on_ID (inf company, int i_d)
 	return company;
 }
 
-//tinh thu nhap cua nhan vien theo ID
-// thu nhap = 70% x (doanh thu cua no + 30% x (10 staff))
-// Dung ham de quy : coi node can tinh la node goc.
-
+// ham tinh toan thu nhan dua vao ID cua nhan vien
 int caculator_income_base_on_id(inf company,inf p,int i_d)
 {
 	int in_come;
@@ -154,21 +151,22 @@ int caculator_income_base_on_id(inf company,inf p,int i_d)
 	{
 		if(p->staff[i] == NULL)
 		{
-			printf("thong tin cua nhan vien thu %d cua node co ID la %d trong\n", i , i_d);
+			//printf("thong tin cua nhan vien thu %d cua node co ID la %d trong\n", i , i_d);
 		}
 		else{
 			extra_income =extra_income + caculator_income_base_on_id(company, p->staff[i], p->staff[i]->ID);
-			printf("extra_income = %d, i = %d, id = %d\n",extra_income,i, p->staff[i]->ID);
+			//printf("extra_income = %d, i = %d, id = %d\n",extra_income,i, p->staff[i]->ID);
 		}
 	}
 	if(p->ID == 0)
 		p->income = 30*extra_income/70;
 	else
 		p->income = 70*(p->sales + 30*extra_income/70)/100;
-	printf("return = %d\n",p->income);
+	//printf("return = %d\n",p->income);
 	return p->income;
 }
 
+//Handle income event - nhap thong tin ID cua nhan vien can tinh thu nhap
 void income_base_on_id(inf company)
 {
 	int ID_check;
