@@ -33,10 +33,10 @@ inf add_staff_base_on_ID (inf company, int i_d);
 
 //2
 int caculator_income_base_on_id(inf company,inf p,int i_d);
-void income_base_on_id(inf company);
+int income_base_on_id(inf company);
 
 
-void print_tree(inf company);
+void print_tree(inf company,inf p);
 
 
 #endif

@@ -167,7 +167,7 @@ int caculator_income_base_on_id(inf company,inf p,int i_d)
 }
 
 //Handle income event - nhap thong tin ID cua nhan vien can tinh thu nhap
-void income_base_on_id(inf company)
+int income_base_on_id(inf company)
 {
 	int ID_check;
 	int in_come;
@@ -180,19 +180,27 @@ void income_base_on_id(inf company)
 	p = find_node_base_on_id(p,ID_check);
 	in_come = caculator_income_base_on_id(company,p,ID_check);
 	printf("in_come = %d\n",in_come);
-	//return in_come;
+	return in_come;
 }
 
 
 
-//DanglHb test print 
-void print_tree(inf company)
+// ham in thong tin cua toan bo nhan vien trong cong ty
+void print_tree(inf company,inf p)
 {
+	//p = company;
+	if(p->ID == 0)
+		printf("Compaty's name = %s\nCompany's ID = %d\nCompany's sale = %d\nCompany's income = %d\n\n", p->name,p->ID,p->sales,caculator_income_base_on_id(company,p,p->ID));
+	else
+		printf("Staff's name = %s\nStaff's ID = %d\nStaff's sale = %d\nStaff's income = %d\n\n", p->name,p->ID,p->sales,caculator_income_base_on_id(company,p,p->ID));
 	for(int i = 0; i < 10; i ++)
 		{
-			if(company->staff[i] == NULL)
-				printf("thong tin cua nhan vien thu %d trong\n",i);
+			if(p->staff[i] == NULL)
+			{
+				//printf("thong tin cua nhan vien thu %d trong\n",i);
+			}
 			else
-				printf("ID cua nhan vien thu %d = %d\n",i,company->staff[i]->ID);
+				print_tree(company,p->staff[i]);
 		}
 }
+

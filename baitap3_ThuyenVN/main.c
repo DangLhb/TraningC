@@ -35,7 +35,7 @@ Mỗi nhân viên có một hệ thống chân rết gồm tối đa 10 nhân vi
                 income_base_on_id(company);
             break;
             case print:
-                print_tree(company);
+                print_tree(company,company);
             break;
             default:
             break;
