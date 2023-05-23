@@ -21,7 +21,8 @@ Cài đặt các chức năng sau:
 int main()
 {
 	int action = 0;
-	product_t product_ptr[1000];
+	//product_t product_ptr[1000];
+	product_t *product_ptr;
 	while(1)
 	{
 		printf("Nhap hanh dong muon thuc hien : \n1 : add\n2 : delete\n3 : change\n4 : Find/Search\n5 : Printf\n ");
@@ -33,6 +34,10 @@ int main()
 		switch(action)
 		{
 			case 1:
+				if(g_number_of_product == 0)
+					product_ptr = (product_t *)malloc((g_number_of_product + 1)*sizeof(product_t));
+				else
+					product_ptr = (product_t*)realloc(product_ptr,(g_number_of_product +1)*sizeof(product_t));
 				add_product(product_ptr);
 			break;
 			case 2:
@@ -49,7 +54,7 @@ int main()
 			break;
 
 			default:
-			    printf("Nhap sai gia tri, nhap lai \n"); 
+			    printf("Nhap sai gia tri, nhap lai \n");
 			break;	
 		}
 		action = 0;
