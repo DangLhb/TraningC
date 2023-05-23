@@ -22,7 +22,7 @@ typedef enum
 	income = 2,
 	print = 3
 }action;
-
+//1
 inf creat_company(void);
 inf creat_new_node(inf p, inf company,int id);
 int is_ID_exist(inf company, int i_d);
@@ -35,7 +35,7 @@ inf add_staff_base_on_ID (inf company, int i_d);
 int caculator_income_base_on_id(inf company,inf p,int i_d);
 int income_base_on_id(inf company);
 
-
+//3
 void print_tree(inf company,inf p);
 
 
