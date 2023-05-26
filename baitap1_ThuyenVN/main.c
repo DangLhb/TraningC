@@ -24,7 +24,8 @@ int main()
 	//product_t product_ptr[1000];
 	product_t *product_ptr;
 	while(1)
-	{
+	{	
+		sort_by_price(product_ptr);
 		printf("Nhap hanh dong muon thuc hien : \n1 : add\n2 : delete\n3 : change\n4 : Find/Search\n5 : Printf\n ");
 // 		do 
 // 		{

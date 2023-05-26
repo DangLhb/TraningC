@@ -60,27 +60,34 @@ void add_product(product_t *product_ptr_t)
 void sort_by_price(product_t *product_ptr_t)
 {
 	int i , j;
-	int last_code, last_price, last_amount;
-	char last_name[50];
-	for(i = 1; i < g_number_of_product; i ++)
+	//int last_code, last_price, last_amount;
+	//char last_name[50];
+	product_t *p_last;
+	product_t *p_fix_1, * p_fix_2;
+
+	for(i = 1; i < g_number_of_product; i++)
 	{
-		last_price = (product_ptr_t + i)->product_price;
-		last_code = (product_ptr_t + i)->product_code;
-		strcpy(last_name, (product_ptr_t + i)->product_name);
-		last_amount = (product_ptr_t + i)->product_remaining_amount;
+		//last_price = (product_ptr_t + i)->product_price;
+		//last_code = (product_ptr_t + i)->product_code;
+		//strcpy(last_name, (product_ptr_t + i)->product_name);
+		//last_amount = (product_ptr_t + i)->product_remaining_amount;
+		p_last = product_ptr_t + i;
 		j = i;
-		while(j > 0, (product_ptr_t + (j - 1))->product_price > last_price)
+		while(j > 0, (product_ptr_t + (j - 1))->product_price > p_last->product_price)
 		{
-			(product_ptr_t + j)->product_price = (product_ptr_t +(j - 1))->product_price;
-			(product_ptr_t + j)->product_code = (product_ptr_t +(j - 1))->product_code;
-			strcpy((product_ptr_t + j)->product_name, (product_ptr_t +(j - 1))->product_name);			
-			(product_ptr_t + j)->product_remaining_amount = (product_ptr_t +(j - 1))->product_remaining_amount;			
+			//(product_ptr_t + j)->product_price = (product_ptr_t +(j - 1))->product_price;
+			//(product_ptr_t + j)->product_code = (product_ptr_t +(j - 1))->product_code;
+			//strcpy((product_ptr_t + j)->product_name, (product_ptr_t +(j - 1))->product_name);			
+			//(product_ptr_t + j)->product_remaining_amount = (product_ptr_t +(j - 1))->product_remaining_amount;
+			// (product_ptr_t + j) = product_ptr_t + (j - 1);
+			// product_ptr_t + j = &(product_ptr_t[j - 1]);
 			j -= 1;
 		}
-		(product_ptr_t + j)->product_price = last_price;
-		(product_ptr_t + j)->product_code = last_code;
-		strcpy((product_ptr_t + j)->product_name, last_name);			
-		(product_ptr_t + j)->product_remaining_amount = last_amount;	
+		//(product_ptr_t + j)->product_price = last_price;
+		//(product_ptr_t + j)->product_code = last_code;
+		//strcpy((product_ptr_t + j)->product_name, last_name);			
+		//(product_ptr_t + j)->product_remaining_amount = last_amount;	
+		(product_ptr_t + j) = p_last;
 	}
 
 }

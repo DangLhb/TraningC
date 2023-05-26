@@ -19,7 +19,7 @@ int main()
 	printf("Create a link list\n");
 	
 	//single
-	// node head = creat_link_list();
+	// node *head = creat_link_list();
 	// sort_node_ascending_insert_sort(head);
 	// print_list(head);
 
@@ -27,6 +27,7 @@ int main()
 	ll_double list_double_1 = creat_link_list_double();
 	sort_node_ascending_insert_sort_double(list_double_1);
 	print_list_double(list_double_1);
+	//list_double_1 = del_node_at_begin_of_list_double(list_double_1);
 	printf("Nhap so phan tu cua mang\n");
 	scanf("%d", &num_of_arr);
 	for(int i = 0; i < num_of_arr; i ++)
@@ -42,7 +43,8 @@ int main()
 	// printf("sum of link list= %d\n", sum_link_list(head, count_mount_of_node(head)));
 
 	//double
-	printf("Max in link list = %d\n", max_link_list_double(list_double_1, count_mount_of_node_double(list_double_1)));
-	printf("sum of link list= %d\n", sum_link_list_double(list_double_1, count_mount_of_node_double(list_double_1)));
+	// printf("Max in link list = %d\n", max_link_list_double(list_double_1, count_mount_of_node_double(list_double_1)));
+	// printf("sum of link list= %d\n", sum_link_list_double(list_double_1, count_mount_of_node_double(list_double_1)));
+
 	return 0;
 }

@@ -5,20 +5,20 @@
 /********creat node*************/
 
 //single
-node creat_node(int value)
+node *creat_node(int value)
 {
-	node danglhb;
-	danglhb = (node)malloc(sizeof(struct Node_sigle));
+	node *danglhb;
+	danglhb = (node*)malloc(sizeof(struct Node_sigle));
 	danglhb->nums = value;
 	danglhb->next = NULL;
 	return danglhb;	
 }
 
 //double
-node_double creat_node_double(int value)
+node_double *creat_node_double(int value)
 {
-	node_double danglhb;
-	danglhb = (node_double)malloc(sizeof(struct Node_double));
+	node_double *danglhb;
+	danglhb = (node_double*)malloc(sizeof(struct Node_double));
 	danglhb->data = value;
 	danglhb->next_d = NULL;
 	danglhb->prev_d = NULL;
@@ -27,9 +27,9 @@ node_double creat_node_double(int value)
 /******add at begin**********/
 
 //single
-node add_node_at_the_begin(node head, int value)
+node *add_node_at_the_begin(node *head, int value)
 {
-	node temp = creat_node(value);
+	node *temp = creat_node(value);
 	if(head == NULL)
 	{
 		printf("DAngLHb debug - head = NUll list empty\n");
@@ -47,7 +47,7 @@ node add_node_at_the_begin(node head, int value)
 //double
 ll_double add_node_at_the_begin_double(ll_double list_double, int value)
 {
-	node_double node_begin = creat_node_double(value);
+	node_double *node_begin = creat_node_double(value);
 	if(list_double.head == NULL)
 	{
 		printf("DanglHb debug - add node at begin - node empty - value = %d \n",value);
@@ -67,16 +67,16 @@ ll_double add_node_at_the_begin_double(ll_double list_double, int value)
 /********add node at the end*****************/
 
 //single
-node add_node_at_the_end(node head, int value)
+node *add_node_at_the_end(node *head, int value)
 {
-	node temp = creat_node(value);
+	node *temp = creat_node(value);
 	if(head == NULL)
 	{
 		head = temp;
 	}
 	else
 	{
-		node p = head;
+		node *p = head;
 		while(p->next !=NULL)
 		{
 			p = p->next;
@@ -89,7 +89,7 @@ node add_node_at_the_end(node head, int value)
 //double
 ll_double add_node_at_the_end_double(ll_double list_double, int value)
 {
-	node_double node_end = creat_node_double(value);
+	node_double *node_end = creat_node_double(value);
 	if(list_double.head == NULL)
 	{
 		list_double.head = node_end;
@@ -107,7 +107,7 @@ ll_double add_node_at_the_end_double(ll_double list_double, int value)
 /**********add node at hope postion***********/
 
 //single
-node add_node_at_hope_postion(node head, int position, int value)
+node *add_node_at_hope_postion(node *head, int position, int value)
 {
 	if(position == 0 || head == NULL)
 	{
@@ -116,7 +116,7 @@ node add_node_at_hope_postion(node head, int position, int value)
 	else 
 	{
 		int k = 1;
-		node p = head;
+		node *p = head;
 		while(k != position && p->next != NULL)
 		{
 			k +=1;
@@ -128,7 +128,7 @@ node add_node_at_hope_postion(node head, int position, int value)
 		}
 		else 
 		{
-			node temp = creat_node(value);
+			node *temp = creat_node(value);
 			temp->next = p->next;
 			p->next = temp;
 		}
@@ -144,7 +144,7 @@ ll_double add_node_at_hope_postion_double(ll_double list_double, int value, int 
 	else
 	{
 		int k = 1;
-		node_double p = list_double.head;
+		node_double *p = list_double.head;
 		while(k != position && p->next_d != NULL)
 		{
 			k += 1;
@@ -154,7 +154,7 @@ ll_double add_node_at_hope_postion_double(ll_double list_double, int value, int 
 			printf(" So thu tu > so node cua list\n");
 		else
 		{
-			node_double new_node = creat_node_double(value);
+			node_double *new_node = creat_node_double(value);
 			p->next_d->prev_d = new_node;
 			p->next_d = new_node;
 			new_node->prev_d = p;
@@ -168,12 +168,13 @@ ll_double add_node_at_hope_postion_double(ll_double list_double, int value, int 
 /*********delete node at begin of list*************/
 
 //single
-node del_node_at_begin_of_list(node head)
+node *del_node_at_begin_of_list(node *head)
 {
 	if(head == NULL)
 		printf("Nothing to del\n");
 	else 
 	{
+		free(head);		//DanglHb giai phong bo nho
 		head = head->next;
 	}
 	return head;
@@ -188,7 +189,9 @@ ll_double del_node_at_begin_of_list_double(ll_double list_double)
 	}
 	else
 	{
+
 		list_double.head = list_double.head->next_d;
+		free(list_double.head->prev_d);		//DanglHb giai phong bo nho
 		list_double.head->prev_d = NULL;
 	}
 	return list_double;
@@ -197,7 +200,7 @@ ll_double del_node_at_begin_of_list_double(ll_double list_double)
 /********delete node at the end of list*************/
 
 //single
-node del_node_at_end_of_list(node head)
+node *del_node_at_end_of_list(node *head)
 {	
 	if(head == NULL)
 	{
@@ -205,11 +208,12 @@ node del_node_at_end_of_list(node head)
 	}
 	else 
 	{
-		node p = head;
+		node *p = head;
 		while(p->next->next !=NULL)	
 		{
 			p = p->next;
 		}
+		free(p->next);		//DanglHb giai phong bo nho
 		p->next = NULL;	//hoac co the viet p->next = p->next->nexts
 		// p->next = p->next->next;
 	}
@@ -224,6 +228,7 @@ ll_double del_node_at_end_of_list_double(ll_double list_double)
 	else
 	{
 		list_double.tail == list_double.tail->prev_d;
+		free(list_double.tail->next_d);		//DanglHb giai phong bo nho
 
 		list_double.tail->next_d = NULL;
 	}
@@ -233,7 +238,7 @@ ll_double del_node_at_end_of_list_double(ll_double list_double)
 /**********delete node at hope position**********/
 
 //single
-node del_node_at_hope_position(node head, int position)
+node *del_node_at_hope_position(node *head, int position)
 {
 	if(head == NULL || position == 0 || head->next == NULL)
 	{
@@ -241,7 +246,7 @@ node del_node_at_hope_position(node head, int position)
 	}
 	else 
 	{
-		node p = head;
+		node *p = head;
 		int k = 1;
 		while(k != position && p->next != NULL)
 		{
@@ -254,6 +259,7 @@ node del_node_at_hope_position(node head, int position)
 		}
 		else
 		{
+			free(p->next);		//DanglHb giai phong bo nho
 			p->next = p->next->next;
 		}
 	}
@@ -268,7 +274,7 @@ ll_double del_node_at_hope_position_double(ll_double list_double, int position)
 	else
 	{
 		int k = 1;
-		node_double p = list_double.head;
+		node_double *p = list_double.head;
 		while(k != position && p->next_d != NULL)
 		{
 			k += 1;
@@ -278,6 +284,7 @@ ll_double del_node_at_hope_position_double(ll_double list_double, int position)
 			printf("Vi tri xoa > so luong node trong list\n");
 		else 
 		{
+			free(p->next_d);
 			p->next_d = p->next_d->next_d;
 			p->next_d->prev_d = p;
 		}
@@ -288,10 +295,10 @@ ll_double del_node_at_hope_position_double(ll_double list_double, int position)
 /***********get value of node************/
 
 //single
-int get_value_of_node(node head, int position)
+int get_value_of_node(node *head, int position)
 {
 	int k = 0;
-	node p = head;
+	node *p = head;
 	while(p->next != NULL && k != position)
 	{
 		k += 1;
@@ -308,7 +315,7 @@ int get_value_of_node(node head, int position)
 int get_value_of_node_double(ll_double list_double, int position)
 {
 	int k = 0;
-	node_double p = list_double.head;
+	node_double *p = list_double.head;
 	while(k != position && p->next_d != NULL)
 	{
 		k += 1;
@@ -322,10 +329,10 @@ int get_value_of_node_double(ll_double list_double, int position)
 /******set value of node ************/
 
 //single
-void set_value_of_node(node head, int position, int value)
+void set_value_of_node(node *head, int position, int value)
 {
 	int k = 0;
-	node p = head;
+	node *p = head;
 	while(p->next != NULL && k != position)
 	{
 		p = p->next;
@@ -345,7 +352,7 @@ void set_value_of_node(node head, int position, int value)
 void set_value_of_node_double(ll_double list_double, int position, int value)
 {
 	int k = 0;
-	node_double p = list_double.head;
+	node_double *p = list_double.head;
 	while(k != position && p->next_d != NULL)
 	{
 		p = p->next_d;
@@ -360,10 +367,10 @@ void set_value_of_node_double(ll_double list_double, int position, int value)
 /***********fine value of node in list************/
 
 //single
-int find_value_in_list(node head, int value)
+int find_value_in_list(node *head, int value)
 {
 	int position = 0;
-	node p = head;
+	node *p = head;
 	for(p = head; p->next != NULL; p = p->next)
 	{
 		if(p->nums == value)
@@ -377,7 +384,7 @@ int find_value_in_list(node head, int value)
 int find_value_in_list_double(ll_double list_double, int value)
 {
 	int position = 0;
-	node_double p = list_double.head;
+	node_double *p = list_double.head;
 	for(p = list_double.head; p->next_d != NULL; p = p->next_d)
 	{
 		if(p->data == value)
@@ -390,14 +397,14 @@ int find_value_in_list_double(ll_double list_double, int value)
 /**********sap sep cac gia tri cua node trong list theo thu tu tang dan bang pp insert sort***********/
 
 //single
-void sort_node_ascending_insert_sort(node head)
+void sort_node_ascending_insert_sort(node *head)
 {
 	int i = 1;
 	int j;
 	int last;
 	if(head == NULL)
 		return;
-	node p;
+	node *p;
 	for(p = head; p->next != NULL; p = p->next)
 	{
 		j = i;
@@ -420,7 +427,7 @@ void sort_node_ascending_insert_sort_double(ll_double list_double)
 	int last;
 	if(list_double.head == NULL)
 		return;
-	node_double p;
+	node_double *p;
 	for(p = list_double.head; p->next_d !=NULL; p = p->next_d)
 	{
 		j = i;
@@ -438,9 +445,9 @@ void sort_node_ascending_insert_sort_double(ll_double list_double)
 /**********tim so luong node trong list******/
 
 //single
-int count_mount_of_node(node head)
+int count_mount_of_node(node *head)
 {
-	node p = head;
+	node *p = head;
 	int count = 0;
 	if(head == NULL)
 		return 0;
@@ -460,7 +467,7 @@ int count_mount_of_node(node head)
 //double
 int count_mount_of_node_double(ll_double list_double)
 {
-	node_double p = list_double.head;
+	node_double *p = list_double.head;
 	int count = 0;
 	if(list_double.head == NULL)
 		return 0;
@@ -475,9 +482,9 @@ int count_mount_of_node_double(ll_double list_double)
 /*******in ra gia tri cua cac node trong list ****************/
 
 //single
-void print_list(node head)
+void print_list(node *head)
 {
-	node p = head;
+	node *p = head;
 	int i = 0;
 	printf("DangLHb DEBUG -- enter print_list\n");
 
@@ -492,7 +499,7 @@ void print_list(node head)
 //double
 void print_list_double(ll_double list_double)
 {
-	node_double p = list_double.head;
+	node_double *p = list_double.head;
 	int i = 0;
 
 	while(p != NULL)
@@ -506,9 +513,9 @@ void print_list_double(ll_double list_double)
 /*************ham khoi tao gia tri cho node dau hoac cuoi***********/
 
 //single
-node init_head(void)
+node *init_head(void)
 {
-	node head = NULL;
+	node *head = NULL;
 	return head;
 }
 
@@ -524,10 +531,10 @@ ll_double init_head_tail_double(void)
 /*******khoi tao danh sach*************/
 
 //single
-node creat_link_list(void)
+node *creat_link_list(void)
 {
 	int value, sum;
-	node head = init_head();	 
+	node *head = init_head();	 
 	printf("Nhap so phan tu cua link list\n");
 	scanf("%d",&sum);
 	for(int i = 0; i < sum; i ++)

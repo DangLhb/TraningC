@@ -81,9 +81,9 @@ int sum_arr_danglhb_2(int arr[], int n)
 //--------------------Function link-list-----------------------------
 //find max by recursive
 //single
-int max_link_list(node head, int n)
+int max_link_list(node *head, int n)
 {
-	node p = head;
+	node *p = head;
 	if(n == 0)
 		return - 1;
 	if(n == 1)
@@ -95,9 +95,9 @@ int max_link_list(node head, int n)
 }
 
 // dau vao n la tong so node trong list , result_max gia tri cua node cuoi cung
-int max_link_list_danglhb(node head, int n, int result_max)
+int max_link_list_danglhb(node *head, int n, int result_max)
 {
-	node p = head;
+	node *p = head;
 	if(n == 0)
 		return -1;
 	if(n == 1)
@@ -107,9 +107,9 @@ int max_link_list_danglhb(node head, int n, int result_max)
 }
 
 //ham tinh tong
-int sum_link_list(node head, int n)
+int sum_link_list(node *head, int n)
 {
-	node p = head;
+	node *p = head;
 
 	if(n == 0)
 		return - 1;
@@ -123,7 +123,7 @@ int sum_link_list(node head, int n)
 //ham tim max trong double link list
 int max_link_list_double(ll_double list_double, int n)
 {
-	node_double p = list_double.head;
+	node_double *p = list_double.head;
 	if(n == 0)
 		return - 1;
 	if(n == 1)
@@ -137,7 +137,7 @@ int max_link_list_double(ll_double list_double, int n)
 //result_max la gia tri cua node cuoi cung trong list.
 int max_link_list_double_danglhb(ll_double list_double, int n, int result_max)
 {
-	node_double p = list_double.head;
+	node_double *p = list_double.head;
 	if (n == 0)
 	{
 		return -1;
@@ -154,7 +154,7 @@ int max_link_list_double_danglhb(ll_double list_double, int n, int result_max)
 // n la tong so node trong list
 int sum_link_list_double(ll_double list_double, int n)
 {
-	node_double p = list_double.head;
+	node_double *p = list_double.head;
 	if(n == 0)
 		return -1;
 	if (n == 1)
