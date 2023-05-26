@@ -12,18 +12,21 @@ Mỗi nhân viên có một hệ thống chân rết gồm tối đa 10 nhân vi
 ****/
 #include "function.h"
 
+int g_exit = 0;
+
  int main()
  {
-    inf company = creat_company();
+    inf *company = creat_company();
     action action;
+    int exit = 0;
 
-    while(1)
+    while(g_exit == 0)
     {
         action = 0;
         do{
-        printf("Hanh dong muon thuc hien\n1 . Them nhan vien vao cong ty \n2. Tinh thua nhap cua nhan vien theo ID.\n3.In thong tin cua toan bo nhan vien\n");
+        printf("Hanh dong muon thuc hien\n1 . Them nhan vien vao cong ty \n2. Tinh thua nhap cua nhan vien theo ID.\n3.In thong tin cua toan bo nhan vien\n4.Exit program");
         scanf("%d", &action);
-        } while(action != 1 && action != 2 && action != 3);
+        } while(action != 1 && action != 2 && action != 3 && action != 4);
 
         switch(action)
         {
@@ -36,6 +39,10 @@ Mỗi nhân viên có một hệ thống chân rết gồm tối đa 10 nhân vi
             break;
             case print:
                 print_tree(company,company);
+            break;
+            case exit_t:
+                g_exit = 1;
+                free(company);
             break;
             default:
             break;

@@ -1,9 +1,9 @@
 #include "function.h"
 // ham khoi tao cong ty voi cac gia tri mac dinh
-inf creat_company(void)
+inf *creat_company(void)
 {
-	inf company;
-	company = (inf)malloc(sizeof(struct infor));
+	inf *company;
+	company = (inf*)malloc(sizeof(inf));
 	printf("Khoi tao cong ty voi ID = 0 va thu nhap = 0\n");
 	company->ID = 0;
 	company->sales = 0;
@@ -18,16 +18,16 @@ inf creat_company(void)
 }
 
 // ham tao mot node gom cac thong tin cua nhan vien
-inf creat_new_node(inf p, inf company,int id)
+inf *creat_new_node(inf *p, inf *company,int id)
 {
-	inf new_staff;
+	inf *new_staff;
 	int ID_check;
 	for(int i = 0; i < 10; i ++)
 	{
 		if(p->staff[i] == NULL)
 		{
 			printf("Nhap thong tin cho thanh vien thu %d cua node cua ID = %d\n",i + 1,id);
-			new_staff = (inf)malloc(sizeof(struct infor));
+			new_staff = (inf*)malloc(sizeof(inf));
 				//phai gan cho no mot cai gi do khac NULL
 			//if(p->staff[i] == NULL)
 				//printf("----------------van = NULL sau khi gan = 1 con tro khac\n");
@@ -62,7 +62,7 @@ inf creat_new_node(inf p, inf company,int id)
 // ham ra soat ID 
 //return 1 neui ID trùng
 //return 0 neu ID chua trung.
-int is_ID_exist(inf company, int i_d)
+int is_ID_exist(inf *company, int i_d)
 {
 	//inf p = company;
 	//printf("DangLHb DEBUG enter is_ID_exist\n");
@@ -71,7 +71,7 @@ int is_ID_exist(inf company, int i_d)
 }
 
 // ham de quy so sánh ID :
-int recusiver_check_ID(inf company, int i_d)
+int recusiver_check_ID(inf *company, int i_d)
 {
 	//printf("DangLHb DEBUG - enter recusiver_check_ID\n");
 	if(company->ID == i_d)
@@ -95,9 +95,9 @@ int recusiver_check_ID(inf company, int i_d)
 	return 0;
 }
 //Handle Event ADD
-void add_staff (inf company)
+void add_staff (inf *company)
 {
-	//inf p = company;
+	//inf *p = company;
 	int ID_superior;
 	printf("Nhap ID cua cap tren: \n");
 	do{
@@ -109,7 +109,7 @@ void add_staff (inf company)
 }
 
 //ham tim vi tri node co ID tuong ung
-inf find_node_base_on_id (inf p, int i_d)
+inf *find_node_base_on_id (inf *p, int i_d)
 {
 	//printf("DanglHb debug - enter find_node_base_on_id\n");
 	if(p->ID == i_d)
@@ -130,10 +130,10 @@ inf find_node_base_on_id (inf p, int i_d)
 }
 
 //ham them nhan vien dua tren ID
-inf add_staff_base_on_ID (inf company, int i_d)
+inf *add_staff_base_on_ID (inf *company, int i_d)
 {
 	//printf("DangLHb DEBUG- enter add_staff_base_on_ID \n");
-	inf p = company;
+	inf *p = company;
 	//kiem tra xem voi ID dau vao thi phai cho con tro P tro toi vi tri node do.
 	p = find_node_base_on_id(p,i_d);
 
@@ -142,7 +142,7 @@ inf add_staff_base_on_ID (inf company, int i_d)
 }
 
 // ham tinh toan thu nhan dua vao ID cua nhan vien
-int caculator_income_base_on_id(inf company,inf p,int i_d)
+int caculator_income_base_on_id(inf *company,inf *p,int i_d)
 {
 	int in_come;
 	int extra_income = 0;
@@ -167,11 +167,11 @@ int caculator_income_base_on_id(inf company,inf p,int i_d)
 }
 
 //Handle income event - nhap thong tin ID cua nhan vien can tinh thu nhap
-int income_base_on_id(inf company)
+int income_base_on_id(inf *company)
 {
 	int ID_check;
 	int in_come;
-	inf p = company;
+	inf *p = company;
 	do
 	{
 		printf("Nhap ID cua nguoi can tinh thu nhap \n");
@@ -186,13 +186,13 @@ int income_base_on_id(inf company)
 
 
 // ham in thong tin cua toan bo nhan vien trong cong ty
-void print_tree(inf company,inf p)
+void print_tree(inf *company,inf *p)
 {
 	//p = company;
 	if(p->ID == 0)
 		printf("Compaty's name = %s\nCompany's ID = %d\nCompany's sale = %d\nCompany's income = %d\n\n", p->name,p->ID,p->sales,caculator_income_base_on_id(company,p,p->ID));
 	else
-		printf("Staff's name = %s\nStaff's ID = %d\nStaff's sale = %d\nStaff's income = %d\n\n", p->name,p->ID,p->sales,caculator_income_base_on_id(company,p,p->ID));
+		printf("Staff's name = %s\nStaff's ID = %d\nStaff's sale = %d\nStaff's income = %d\nID of superior = %d\n\n", p->name,p->ID,p->sales,caculator_income_base_on_id(company,p,p->ID), p->superior->ID);
 	for(int i = 0; i < 10; i ++)
 		{
 			if(p->staff[i] == NULL)
