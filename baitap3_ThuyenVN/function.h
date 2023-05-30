@@ -3,15 +3,20 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+//#define type2
 struct infor
 {
 	int ID;
 	char name[30];
 	int sales;
 	int income;
-	struct infor *superior;
+#ifndef type2	
 	struct infor *staff[10];
+#else
+	struct infor *staff;
+	struct infor *bro;
+#endif
+	struct infor *superior;
 };
 typedef struct infor inf;
 
@@ -31,6 +36,7 @@ int recusiver_check_ID(inf *p, int i_d);
 void add_staff (inf *company);
 inf *find_node_base_on_id (inf *p, int i_d);
 inf *add_staff_base_on_ID (inf *company, int i_d);
+inf *fill_infor_staff(inf staff);
 
 //2
 int caculator_income_base_on_id(inf *company,inf *p,int i_d);

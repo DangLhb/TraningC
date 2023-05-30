@@ -9,12 +9,39 @@ inf *creat_company(void)
 	company->sales = 0;
 	printf("Nhap ten cong ty\n");
 	scanf("%s", company->name);
+#ifndef type2	
 	company->superior = NULL;
 	for(int i = 0; i < 10; i ++)
 	{
 		company->staff[i] = NULL;
 	}
+#else
+	company->staff = NULL;
+	company->bro = NULL;
+	company->superior = NULL;
+#endif	
 	return company;
+}
+//ham dien thong tin cho nhan vien
+inf *fill_infor_staff(inf staff)
+{
+	inf new_staff;
+	printf("Nhap thong tin cho thanh vien thu %d cua node cua ID = %d\n",i + 1,id);
+	new_staff = (inf)malloc(sizeof(struct infor));
+	
+	do {
+		printf("Nhap ID cua node :\n");
+		scanf("%d",&ID_check);
+		// scanf("%d", &p->staff[i]->ID);
+	} while(is_ID_exist(company,ID_check) == 1);
+	new_staff->ID = ID_check;
+	
+	printf("Nhap ten : \n");
+	scanf("%s", &new_staff->name);			
+	printf("Nhap thu nhap:\n");
+	scanf("%d", &new_staff->sales);
+	staff = new_staff;
+	return staff;
 }
 
 // ham tao mot node gom cac thong tin cua nhan vien
@@ -26,26 +53,7 @@ inf *creat_new_node(inf *p, inf *company,int id)
 	{
 		if(p->staff[i] == NULL)
 		{
-			printf("Nhap thong tin cho thanh vien thu %d cua node cua ID = %d\n",i + 1,id);
-			new_staff = (inf*)malloc(sizeof(inf));
-				//phai gan cho no mot cai gi do khac NULL
-			//if(p->staff[i] == NULL)
-				//printf("----------------van = NULL sau khi gan = 1 con tro khac\n");
-			do {
-				printf("Nhap ID cua node :\n");
-				scanf("%d",&ID_check);
-				// scanf("%d", &p->staff[i]->ID);
-			} while(is_ID_exist(company,ID_check) == 1);
-			new_staff->ID = ID_check;
-			p->staff[i] = new_staff;
-			printf("Nhap ten : \n");
-			scanf("%s", &new_staff->name);
-			// scanf("%s", p->staff[i]->name);
-			
-			printf("Nhap thu nhap:\n");
-			scanf("%d", &new_staff->sales);
-			// scanf("%d", &p->staff[i]->sales);
-			
+			p->staff[i] = fill_infor_staff(p->staff[i]);
 			for(int	i = 0; i < 10 ; i ++)
 			{
 				new_staff->staff[i] = NULL;	
